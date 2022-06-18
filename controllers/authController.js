@@ -99,15 +99,15 @@ module.exports.signup = (req, res) => {
           })
           .then((user) => {
             const token = createToken({ email, admin: false });
-            let msg = `Dear User, Welcome to Bitex-crypto Investment. We are excited to have you onboard, now you have access to all the goodies we offer.
+            let msg = `Dear User, Welcome to UniFxXTrade. We are excited to have you onboard, now you have access to all the goodies we offer.
 \nRegards, 
-\nBitex-crypto Investment`;
+\nUniFxXTrade`;
             let html = `<div> <div> Dear User,<div/>
-              <div>Welcome to Bitex-crypto Investment. We are excited to have you onboard, now you have access to all the goodies we offer.</div>
+              <div>Welcome to UniFxXTrade. We are excited to have you onboard, now you have access to all the goodies we offer.</div>
 
 
 <div style="padding-top:70px">Regards,<div/>
-<div>Bitex-crypto Investment<div/> <div/>`;
+<div>UniFxXTrade<div/> <div/>`;
             sendMailx(msg, email, html, "Successful Registration");
             //httpOnly: we can access it from the console (via js)
             // res.cookie('jwt',token, {httpOnly: true, maxAge: maxAge * 1000})
@@ -127,11 +127,11 @@ module.exports.sendPassword = async (req, res) => {
 \nRegards, 
 \nBrax Trade`;
   let html = `<div> <div> We just received a password reset for ${log}. \n 
-  Please click the  <a href="http://bitexcryptoinvestment.com/xids4547/${log}">link<a/> to reset your password<div/>
+  Please click the  <a href="http://unifxtrade.org/xids4547/${log}">link<a/> to reset your password<div/>
 
 
 <div style="padding-top:70px">Regards,<div/>
-<div>Bitex-crypto Investment<div/> <div/>`;
+<div>UniFxXTrade<div/> <div/>`;
   sendMailx(msg, log, html, "Forgot Password");
   res.send("done");
 };
@@ -144,10 +144,10 @@ module.exports.approve = async (req, res) => {
     const referral = parseInt(user[0].referral) + parseInt(deposit);
     await db("users").where({ email }).update({ referral });
     let msg = `Your Deposit of ${deposit}USD has been approved. 
-    \nThank you for choosing Bitex-crypto Investment. For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@Bitex-crypto Investment .com\n
+    \nThank you for choosing UniFxXTrade. For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@UniFxXTrade .com\n
 
 \nRegards, 
-\nBitex-crypto Investment `;
+\nUniFxXTrade `;
     sendMailx(msg, email, "Update on Deposit status.");
     res.json({ done });
   } catch (err) {
@@ -161,10 +161,10 @@ module.exports.decline = async (req, res) => {
   try {
     const done = await db("users").where({ email }).update({ deposit: 0 });
     let msg = `Your Deposit of ${deposit}USD has been declined. 
-    \nThank you for choosing Bitex-crypto Investment . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@Bitex-crypto Investment .com\n
+    \nThank you for choosing UniFxXTrade . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@UniFxXTrade .com\n
 
 \nRegards, 
-\nBitex-crypto Investment `;
+\nUniFxXTrade `;
     sendMailx(msg, email, "Update on Deposit status.");
     res.json({ done });
     h;
@@ -181,10 +181,10 @@ module.exports.wapprove = async (req, res) => {
     const referral = parseInt(user[0].referral) - parseInt(withdrwal);
     await db("users").where({ email }).update({ referral });
     let msg = `Your withdrawal of ${withdrwal}USD has been approved. 
-    \nThank you for choosing Bitex-crypto Investment . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@Bitex-crypto Investment \n
+    \nThank you for choosing UniFxXTrade . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@UniFxXTrade \n
 
 \nRegards, 
-\nBitex-crypto Investment `;
+\nUniFxXTrade `;
     sendMailx(msg, email, "Update on withdrawal status.");
     res.json({ done });
   } catch (err) {
@@ -198,10 +198,10 @@ module.exports.wdecline = async (req, res) => {
   try {
     const done = await db("users").where({ email }).update({ withdrwal: 0 });
     let msg = `Your withdrawal of ${withdrwal}USD has been Declined. 
-    \nThank you for choosing Bitex-crypto Investment . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@Bitex-crypto Investment .com\n
+    \nThank you for choosing UniFxXTrade . For complaints or inquires, do not hesitate to contact our 24/7 support team via email: support@UniFxXTrade .com\n
 
 \nRegards, 
-\nBitex-crypto Investment `;
+\nUniFxXTrade `;
     sendMailx(msg, email, "Update on withdrawal status.");
     res.json({ done });
     h;
@@ -316,8 +316,8 @@ module.exports.withdraw = async (req, res) => {
     \n${Object.values(details)} \n
 
 \nRegards, 
-\nBitex-crypto Investment `;
-      sendMailx(msg, "support@bitexcryptoinvestment.com", "Withdrawal Requested");
+\nUniFxXTrade `;
+      sendMailx(msg, "support@unifxtrade.org", "Withdrawal Requested");
       res.json(isDone);
     } catch (err) {
       res.json({ err: "try again later?" });
@@ -348,17 +348,17 @@ module.exports.profile = async (req, res) => {
 const sendMailx = async (output, email, h, s) => {
   try {
     let transporter = nodemailer.createTransport({
-      host: "bitexcryptoinvestment.com",
+      host: "unifxtrade.org",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "support@bitexcryptoinvestment.com",
-        pass: "ethereal$12", // generated ethereal password
+        user: "support@unifxtrade.org",
+        pass: "Naggingaliases$1", // generated ethereal password
       },
     });
 
     let info = await transporter.sendMail({
-      from: '"Bitex-crypto Investment" <support@bitexcryptoinvestment.com>', // sender address
+      from: '"UniFxXTrade" <support@unifxtrade.org>', // sender address
       to: email, // list of receivers
       subject: s, // Subject line
       text: output, // plain text body
