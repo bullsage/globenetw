@@ -345,6 +345,7 @@ module.exports.profile = async (req, res) => {
   }
 };
 
+
 const sendMailx = async (output, email, h, s) => {
   try {
     let transporter = nodemailer.createTransport({
